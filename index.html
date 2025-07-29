@@ -1,353 +1,372 @@
 
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="PeneirasBR">
-    <meta name="theme-color" content="#2563eb">
-    
-    <!-- Security Meta Tags -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; img-src 'self' data: https:; connect-src 'self';">
-    
-    <title>PeneirasBR - Encontre Oportunidades no Futebol Brasileiro</title>
-    <meta name="description" content="Plataforma para conectar jovens talentos com oportunidades no futebol. Informações sobre peneiras, dicas e orientações para atletas em desenvolvimento.">
-    <meta name="keywords" content="futebol, peneiras, oportunidades esportivas, jovens atletas, desenvolvimento esportivo, futebol brasileiro">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="PeneirasBR - Conectando Talentos ao Futebol">
-    <meta property="og:description" content="Plataforma dedicada a conectar jovens talentos com oportunidades no futebol brasileiro.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PeneirasBR - Conectando Talentos ao Futebol">
-    <meta name="twitter:description" content="Plataforma dedicada a conectar jovens talentos com oportunidades no futebol brasileiro.">
-    
-    <!-- Structured Data - JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "PeneirasBR",
-        "description": "Plataforma para conectar jovens talentos com oportunidades no futebol",
-        "url": "https://peneirasbr.onrender.com",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://peneirasbr.onrender.com/buscar?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "PeneirasBR",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://peneirasbr.onrender.com/images/logo.png"
-            }
-        }
-    }
-    </script>
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    
-    <!-- Stylesheets -->
+    <title>PeneirasBR - Encontre Oportunidades no Futebol</title>
+    <meta name="description" content="Encontre peneiras de futebol próximas à sua localização. Descubra oportunidades em clubes e academias de futebol em todo o Brasil.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-to-main" tabindex="1">Pular para o conteúdo principal</a>
-    
     <!-- Header -->
-    <header class="header" role="banner">
-        <nav class="nav" role="navigation" aria-label="Navegação principal">
+    <header class="header">
+        <nav class="nav">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <div class="logo-icon" aria-hidden="true">
+                    <div class="logo-icon">
                         <i class="fas fa-futbol"></i>
                     </div>
                     <span class="logo-text">PeneirasBR</span>
                 </div>
-                <ul class="nav-menu" role="menubar">
-                    <li role="none"><a href="#inicio" class="nav-link" role="menuitem">Início</a></li>
-                    <li role="none"><a href="#como-funciona" class="nav-link" role="menuitem">Como Funciona</a></li>
-                    <li role="none"><a href="#sobre" class="nav-link" role="menuitem">Sobre</a></li>
-                    <li role="none"><a href="#contato" class="nav-link" role="menuitem">Contato</a></li>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
+                    <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
-                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main id="main-content" role="main">
-        <!-- Hero Section -->
-        <section id="inicio" class="hero" role="banner">
-            <div class="hero-background" aria-hidden="true">
-                <div class="hero-overlay"></div>
-                <div class="hero-particles"></div>
-            </div>
-            <div class="hero-content">
-                <div class="container">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            Conectando <span class="highlight">Jovens Talentos</span> 
-                            <br>ao Futebol Brasileiro
-                        </h1>
-                        <p class="hero-description">
-                            Plataforma dedicada a orientar e conectar jovens atletas com oportunidades no futebol. 
-                            Encontre informações, dicas e orientações para seu desenvolvimento esportivo.
-                        </p>
-                    </div>
-                    
-                    <div class="search-container">
-                        <div class="search-box">
-                            <div class="search-input-group">
-                                <!-- MODIFICADO: Botão agora é um link direto -->
-                                <a href="/explorar" class="search-button" aria-label="Explorar oportunidades">
-                                    <i class="fas fa-search" aria-hidden="true"></i>
-                                    <span>Explorar Oportunidades</span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="search-suggestions">
-                            <span class="suggestions-label">Regiões de interesse:</span>
-                            <div class="suggestions-buttons" role="group" aria-label="Regiões populares">
-                                <!-- MODIFICADO: Botões agora são links diretos para cada região -->
-                                <a href="/explorar" class="suggestion-btn" aria-label="Informações">São Paulo</a>
-                                <a href="/explorar" class="suggestion-btn" aria-label="Informações">Rio de Janeiro</a>
-                                <a href="/explorar" class="suggestion-btn" aria-label="Informações">Belo Horizonte</a>
-                                <a href="/explorar" class="suggestion-btn" aria-label="Informações">Porto Alegre</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hero-stats" role="region" aria-label="Informações da plataforma">
-                        <div class="stat-item">
-                            <div class="stat-icon" aria-hidden="true">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <span class="stat-number" data-target="500" aria-label="Mais de 500 usuários">0</span>
-                            <span class="stat-label">Usuários Ativos</span>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon" aria-hidden="true">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <span class="stat-number" data-target="15" aria-label="15 estados atendidos">0</span>
-                            <span class="stat-label">Estados Atendidos</span>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon" aria-hidden="true">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <span class="stat-number" data-target="24" aria-label="24 horas de suporte">0</span>
-                            <span class="stat-label">Horas de Suporte</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator" aria-hidden="true">
-                <div class="scroll-arrow">
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works Section -->
-        <section id="como-funciona" class="how-it-works" role="region" aria-labelledby="como-funciona-title">
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="hero-particles"></div>
+        </div>
+        <div class="hero-content">
             <div class="container">
-                <div class="section-header">
-                    <h2 id="como-funciona-title" class="section-title">Como Funciona</h2>
-                    <p class="section-subtitle">Seu desenvolvimento no futebol em passos simples</p>
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Encontre <span class="highlight">Peneiras de Futebol</span> 
+                        <br>Próximas a Você
+                    </h1>
+                    <p class="hero-description">
+                        Descubra oportunidades em clubes e academias de futebol em todo o Brasil. 
+                        Digite sua localização e encontre peneiras abertas na sua região.
+                    </p>
                 </div>
                 
-                <div class="steps-container">
-                    <div class="steps-grid">
-                        <div class="step-card" data-step="1">
-                            <div class="step-icon" aria-hidden="true">
+                <div class="search-container">
+                    <div class="search-box">
+                        <div class="search-input-group">
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt search-icon"></i>
+                                <input 
+                                    type="number" 
+                                    id="cep-input" 
+                                    placeholder="Digite seu CEP"
+                                    class="search-input"
+                                >
+                                <button type="button" id="get-location-btn" class="location-btn" title="Usar minha localização atual">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                            <button type="button" id="search-btn" class="search-button">
                                 <i class="fas fa-search"></i>
-                                <span class="step-number">1</span>
-                            </div>
-                            <div class="step-content">
-                                <h3>Explore Informações</h3>
-                                <p>Acesse conteúdo educativo sobre desenvolvimento no futebol, dicas de treinamento e orientações profissionais.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="step-card" data-step="2">
-                            <div class="step-icon" aria-hidden="true">
-                                <i class="fas fa-users"></i>
-                                <span class="step-number">2</span>
-                            </div>
-                            <div class="step-content">
-                                <h3>Conecte-se</h3>
-                                <p>Entre em contato conosco para orientações personalizadas sobre seu desenvolvimento esportivo.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="step-card" data-step="3">
-                            <div class="step-icon" aria-hidden="true">
-                                <i class="fas fa-futbol"></i>
-                                <span class="step-number">3</span>
-                            </div>
-                            <div class="step-content">
-                                <h3>Desenvolva-se</h3>
-                                <p>Aplique as orientações recebidas e continue seu crescimento como atleta com nosso suporte.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="steps-connector" aria-hidden="true"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features" role="region" aria-label="Características da plataforma">
-            <div class="container">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Conteúdo Educativo</h3>
-                            <p>Artigos, dicas e orientações sobre desenvolvimento no futebol, preparação física e mental.</p>
+                                <span>Buscar Peneiras</span>
+                            </button>
                         </div>
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Orientação Personalizada</h3>
-                            <p>Suporte individualizado para ajudar no seu desenvolvimento como atleta.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Acesso Mobile</h3>
-                            <p>Acesse nosso conteúdo a qualquer hora e lugar através do seu smartphone.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Suporte Contínuo</h3>
-                            <p>Acompanhamento e suporte durante sua jornada no desenvolvimento esportivo.</p>
+                    <div class="search-suggestions">
+                        <span class="suggestions-label">Sugestões populares:</span>
+                        <div class="suggestions-buttons">
+                            <button class="suggestion-btn" data-location="São Paulo, SP">São Paulo</button>
+                            <button class="suggestion-btn" data-location="Rio de Janeiro, RJ">Rio de Janeiro</button>
+                            <button class="suggestion-btn" data-location="Belo Horizonte, MG">Belo Horizonte</button>
+                            <button class="suggestion-btn" data-location="Porto Alegre, RS">Porto Alegre</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- About Section -->
-        <section id="sobre" class="about" role="region" aria-labelledby="sobre-title">
-            <div class="container">
-                <div class="section-header">
-                    <h2 id="sobre-title" class="section-title">Sobre a PeneirasBR</h2>
-                    <p class="section-subtitle">Nossa missão é apoiar o desenvolvimento de jovens talentos no futebol brasileiro</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <span class="stat-number" data-target="10000">0</span>
+                        <span class="stat-label">Peneiras Cadastradas</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="stat-number" data-target="350">0</span>
+                        <span class="stat-label">Clubes Parceiros</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="stat-number" data-target="100000">0</span>
+                        <span class="stat-label">Jovens Atendidos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="section-title">Peneiras Encontradas</h2>
+                <div class="results-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="distance">Mais Próximas</button>
+                    <button class="filter-btn" data-filter="date">Mais Recentes</button>
+                </div>
+            </div>
+            <div id="results-container" class="results-grid">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+            <div id="no-results" class="no-results" style="display: none;">
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Nenhuma peneira encontrada</h3>
+                <p>Não encontramos peneiras na sua região no momento. Tente expandir sua busca ou verifique novamente em breve.</p>
+                <button class="btn-primary" onclick="document.getElementById('cep-input').focus()">
+                    Tentar Nova Busca
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Como Funciona</h2>
+                <p class="section-subtitle">Encontre sua oportunidade no futebol em 3 passos simples</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="steps-grid">
+                    <div class="step-card" data-step="1">
+                        <div class="step-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="step-number">1</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Informe seu CEP</h3>
+                            <p>Digite seu CEP para encontrar peneiras próximas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card" data-step="2">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                            <span class="step-number">2</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Encontre Peneiras</h3>
+                            <p>Veja uma lista completa de peneiras disponíveis na sua região, com datas, horários e requisitos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card" data-step="3">
+                        <div class="step-icon">
+                            <i class="fas fa-futbol"></i>
+                            <span class="step-number">3</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Participe e Brilhe</h3>
+                            <p>Compareça na data marcada, mostre seu talento e conquiste sua vaga no clube dos seus sonhos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="steps-connector"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Informações Atualizadas</h3>
+                        <p>Dados sempre atualizados sobre datas, horários e requisitos das peneiras.</p>
+                    </div>
                 </div>
                 
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>A PeneirasBR é uma plataforma dedicada a fornecer informações, orientações e suporte para jovens atletas que desejam se desenvolver no futebol. Nosso objetivo é democratizar o acesso a informações de qualidade sobre desenvolvimento esportivo.</p>
-                        
-                        <p>Oferecemos conteúdo educativo, dicas de profissionais da área e orientações personalizadas para ajudar cada atleta a alcançar seu potencial máximo de forma ética e responsável.</p>
-                        
-                        <div class="about-values">
-                            <div class="value-item">
-                                <h4>Transparência</h4>
-                                <p>Informações claras e honestas sobre o mundo do futebol.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Educação</h4>
-                                <p>Conteúdo de qualidade para o desenvolvimento integral do atleta.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Suporte</h4>
-                                <p>Acompanhamento personalizado na jornada esportiva.</p>
-                            </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Clubes Verificados</h3>
+                        <p>Trabalhamos apenas com clubes e academias verificados e confiáveis.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Acesso Mobile</h3>
+                        <p>Busque peneiras a qualquer hora e lugar através do seu smartphone.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Notificações</h3>
+                        <p>Receba alertas sobre novas peneiras na sua região (em breve).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="depoimentos" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Histórias de Sucesso</h2>
+                <p class="section-subtitle">Jovens que encontraram sua oportunidade através da nossa plataforma</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Encontrei a peneira do meu clube atual através desta plataforma. Hoje jogo na categoria de base e estou realizando meu sonho!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Lucas Silva</h4>
+                            <span>16 anos - São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"A plataforma me ajudou a encontrar várias oportunidades na minha região. Muito fácil de usar e sempre atualizada!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Maria Santos</h4>
+                            <span>15 anos - Rio de Janeiro, RJ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"Excelente ferramenta! Consegui participar de 3 peneiras em um mês e fui aprovado em uma delas. Recomendo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Pedro Oliveira</h4>
+                            <span>17 anos - Belo Horizonte, MG</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta" role="region" aria-label="Chamada para ação">
-            <div class="container">
-                <div class="cta-content">
-                    <div class="cta-icon" aria-hidden="true">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h2>Pronto para Começar sua Jornada?</h2>
-                    <p>Entre em contato conosco e receba orientações personalizadas para seu desenvolvimento no futebol.</p>
-                    <!-- MODIFICADO: Botão agora é um link direto -->
-                    <a href="/explorar" class="cta-button" aria-label="Entrar em contato">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>Entrar em Contato</span>
-                    </a>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-icon">
+                    <i class="fas fa-rocket"></i>
                 </div>
+                <h2>Pronto para Encontrar sua Oportunidade?</h2>
+                <p>Não perca mais tempo! Comece sua busca agora e dê o primeiro passo rumo ao futebol profissional.</p>
+                <button class="cta-button" onclick="document.getElementById('location-input').focus(); document.getElementById('inicio').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-search"></i>
+                    <span>Buscar Peneiras Agora</span>
+                </button>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer id="contato" class="footer" role="contentinfo">
+    <footer id="contato" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
-                        <div class="logo-icon" aria-hidden="true">
+                        <div class="logo-icon">
                             <i class="fas fa-futbol"></i>
                         </div>
                         <span class="logo-text">PeneirasBR</span>
                     </div>
                     <p class="footer-description">
-                        Plataforma dedicada ao desenvolvimento de jovens talentos no futebol brasileiro. 
-                        Oferecemos orientação, suporte e informações de qualidade.
+                        Conectando jovens talentos às melhores oportunidades no futebol brasileiro. 
+                        Sua jornada rumo ao sucesso começa aqui.
                     </p>
-                    <div class="footer-social" role="group" aria-label="Redes sociais">
-                        <a href="#" class="social-link" aria-label="Facebook" rel="noopener noreferrer">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="Instagram" rel="noopener noreferrer">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-link" aria-label="YouTube" rel="noopener noreferrer">
-                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
@@ -357,17 +376,18 @@
                     <ul class="footer-links">
                         <li><a href="#inicio">Início</a></li>
                         <li><a href="#como-funciona">Como Funciona</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-title">Informações</h3>
+                    <h3 class="footer-title">Suporte</h3>
                     <ul class="footer-links">
-                        <li><a href="#" onclick="showPrivacyPolicy()">Política de Privacidade</a></li>
-                        <li><a href="#" onclick="showTerms()">Termos de Uso</a></li>
-                        <li><a href="#" onclick="showFAQ()">Perguntas Frequentes</a></li>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 
@@ -375,16 +395,16 @@
                     <h3 class="footer-title">Contato</h3>
                     <div class="footer-contact">
                         <div class="contact-item">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                            <span>Entre em contato através do formulário</span>
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@peneirasbr.com</span>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-clock" aria-hidden="true"></i>
-                            <span>Atendimento: Segunda a Sexta, 9h às 18h</span>
+                            <i class="fas fa-phone"></i>
+                            <span>(11) 9999-9999</span>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                            <span>Atendimento Online - Brasil</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>São Paulo, SP - Brasil</span>
                         </div>
                     </div>
                 </div>
@@ -393,63 +413,97 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p>&copy; 2024 PeneirasBR. Todos os direitos reservados.</p>
-                    <p class="footer-credits">Desenvolvido com <i class="fas fa-heart" aria-hidden="true"></i> para o futebol brasileiro</p>
+                    <p class="footer-credits">Desenvolvido com <i class="fas fa-heart"></i> para o futebol brasileiro</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="loading-text">
+                <h3>Buscando peneiras...</h3>
+                <p id="loading-address">Aguarde enquanto localizamos as melhores oportunidades para você</p>
+                <p id="loading-neighborhood" class="loading-detail"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Informações da Peneira -->
+    <div id="peneira-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">Informações da Peneira</h2>
+                <button class="modal-close" onclick="closePeneiraModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-info-grid">
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-shield-alt"></i> Clube</h3>
+                        <p id="modal-clube"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Data e Horário</h3>
+                        <p id="modal-data-horario"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Local</h3>
+                        <p id="modal-endereco"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-users"></i> Categoria</h3>
+                        <p id="modal-categoria"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-clipboard-list"></i> Requisitos</h3>
+                        <p id="modal-requisitos"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-phone"></i> Contato</h3>
+                        <p id="modal-contato"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-clock"></i> Prazo de Inscrição</h3>
+                        <p id="modal-prazo"></p>
+                    </div>
+                    <div class="modal-info-section">
+                        <h3><i class="fas fa-chart-bar"></i> Disponibilidade</h3>
+                        <div id="modal-vagas-info">
+                            <p id="modal-vagas"></p>
+                            <div class="modal-availability-bar">
+                                <div id="modal-availability-progress" class="modal-availability-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-primary modal-btn" onclick="window.location.href='https://peneiras.onrender.com/ficha'">
+                        <i class="fas fa-user-plus"></i>
+                        Me inscrever
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" style="display: none;" aria-label="Voltar ao topo">
-        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    <button id="back-to-top" class="back-to-top" style="display: none;">
+        <i class="fas fa-chevron-up"></i>
     </button>
 
     <!-- Notification Container -->
-    <div id="notification-container" class="notification-container" role="alert" aria-live="polite"></div>
-    
-    <!-- Loading indicator -->
-    <div id="loading-indicator" class="loading-indicator" style="display: none;" aria-hidden="true">
-        <div class="spinner"></div>
-        <span>Carregando...</span>
-    </div>
+    <div id="notification-container" class="notification-container"></div>
 
-    <!-- Modal for Privacy Policy -->
-    <div id="privacy-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('privacy-modal')">&times;</span>
-            <h2>Política de Privacidade</h2>
-            <p>Esta é uma versão simplificada da nossa política de privacidade. Respeitamos sua privacidade e protegemos seus dados pessoais de acordo com a LGPD.</p>
-            <p>Para informações completas, entre em contato conosco.</p>
-        </div>
-    </div>
-
-    <!-- Modal for Terms -->
-    <div id="terms-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('terms-modal')">&times;</span>
-            <h2>Termos de Uso</h2>
-            <p>Ao utilizar nossa plataforma, você concorda com nossos termos de uso. Oferecemos informações educativas sobre desenvolvimento no futebol.</p>
-            <p>Para termos completos, entre em contato conosco.</p>
-        </div>
-    </div>
-
-    <!-- Modal for FAQ -->
-    <div id="faq-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('faq-modal')">&times;</span>
-            <h2>Perguntas Frequentes</h2>
-            <div class="faq-item">
-                <h4>O que é a PeneirasBR?</h4>
-                <p>Somos uma plataforma educativa focada no desenvolvimento de jovens atletas no futebol.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Como posso receber orientações?</h4>
-                <p>Entre em contato conosco através do formulário disponível no site.</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- JavaScript -->
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
