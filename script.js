@@ -1,13 +1,13 @@
-// Dados simulados de peneiras de futebol - VERSÃƒO SIMPLIFICADA
+// Dados simulados de peneiras de futebol - VERSÃO SIMPLIFICADA
 const peneirasData = [
     {
         id: 1,
         titulo: "Peneira Sub-16 e Sub-17",
-        clube: "Base - AtlÃ©tico Mineiro",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        clube: "Base - Atlético Mineiro",
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "14:00",
-        categoria: "Sub-16 atÃ© Sub-17",
+        categoria: "Sub-16 até Sub-17",
         requisitos: "Idade Entre 16-17 anos",
         contato: "(13) 3257-4000",
         distancia: 2.5,
@@ -23,7 +23,7 @@ const peneirasData = [
         id: 2,
         titulo: "Peneira Sub-08",
         clube: "Base - Paysandu FC",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "09:00",
         categoria: "Sub-09",
@@ -40,12 +40,12 @@ const peneirasData = [
     },
     {
         id: 3,
-        titulo: "Peneira Sub-09 atÃ© Sub-12",
+        titulo: "Peneira Sub-09 até Sub-12",
         clube: "Base - Internacional FC",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "15:30",
-        categoria: "Sub-09 atÃ© Sub-12",
+        categoria: "Sub-09 até Sub-12",
         requisitos: "Idade entre 09-12 anos",
         contato: "(11) 2095-3000",
         distancia: 8.2,
@@ -59,12 +59,12 @@ const peneirasData = [
     },
     {
         id: 4,
-        titulo: "Peneira Sub-13 atÃ© Sub-15",
-        clube: "Base - Ãgua Santa FC",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        titulo: "Peneira Sub-13 até Sub-15",
+        clube: "Base - Água Santa FC",
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "10:00",
-        categoria: "Sub-13 atÃ© Sub-15",
+        categoria: "Sub-13 até Sub-15",
         requisitos: "Idade entre 13-15 anos",
         contato: "(11) 3873-2400",
         distancia: 12.1,
@@ -78,12 +78,12 @@ const peneirasData = [
     },
     {
         id: 5,
-        titulo: "Peneira Sub-18 atÃ© Sub-21",
+        titulo: "Peneira Sub-18 até Sub-21",
         clube: "Red Bull Bragantino",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "13:00",
-        categoria: "Sub-18 atÃ© Sub-21",
+        categoria: "Sub-18 até Sub-21",
         requisitos: "Idade entre 18-21 anos",
         contato: "(11) 4034-1900",
         distancia: 45.3,
@@ -99,7 +99,7 @@ const peneirasData = [
         id: 6,
         titulo: "Peneira Sub-21 +",
         clube: "Ponte Preta",
-        endereco: null, // SerÃ¡ preenchido com o CEP do usuÃ¡rio
+        endereco: null, // Será preenchido com o CEP do usuário
         data: "2025-08-10",
         horario: "14:30",
         categoria: "Sub-21 +",
@@ -116,15 +116,15 @@ const peneirasData = [
     }
 ];
 
-// Cache para armazenar endereÃ§os jÃ¡ consultados
+// Cache para armazenar endereços já consultados
 const enderecoCache = new Map();
 
-// FunÃ§Ã£o para buscar endereÃ§o por CEP via ViaCEP
+// Função para buscar endereço por CEP via ViaCEP
 async function buscarEnderecoPorCEP(cep) {
-    // Limpar CEP (remover hÃ­fen e espaÃ§os)
+    // Limpar CEP (remover hífen e espaços)
     const cepLimpo = cep.replace(/\D/g, '');
     
-    // Verificar se jÃ¡ estÃ¡ no cache
+    // Verificar se já está no cache
     if (enderecoCache.has(cepLimpo)) {
         console.log(`CEP ${cep} encontrado no cache:`, enderecoCache.get(cepLimpo));
         return enderecoCache.get(cepLimpo);
@@ -132,8 +132,8 @@ async function buscarEnderecoPorCEP(cep) {
     
     // Validar formato do CEP
     if (cepLimpo.length !== 8) {
-        console.error(`CEP invÃ¡lido: ${cep} (deve ter 8 dÃ­gitos)`);
-        return 'CEP invÃ¡lido';
+        console.error(`CEP inválido: ${cep} (deve ter 8 dígitos)`);
+        return 'CEP inválido';
     }
     
     try {
@@ -148,7 +148,7 @@ async function buscarEnderecoPorCEP(cep) {
         console.log(`Resposta da API para CEP ${cep}:`, data);
         
         if (data.erro) {
-            throw new Error('CEP nÃ£o encontrado na base de dados');
+            throw new Error('CEP não encontrado na base de dados');
         }
         
         if (!data.localidade || !data.uf) {
@@ -156,7 +156,7 @@ async function buscarEnderecoPorCEP(cep) {
         }
         
         const endereco = `${data.localidade}, ${data.uf}`;
-        console.log(`EndereÃ§o formatado para CEP ${cep}: ${endereco}`);
+        console.log(`Endereço formatado para CEP ${cep}: ${endereco}`);
         
         // Armazenar no cache
         enderecoCache.set(cepLimpo, endereco);
@@ -164,12 +164,12 @@ async function buscarEnderecoPorCEP(cep) {
         return endereco;
     } catch (error) {
         console.error(`Erro ao buscar CEP ${cep}:`, error.message);
-        // Retornar um endereÃ§o padrÃ£o em caso de erro
-        return 'LocalizaÃ§Ã£o nÃ£o disponÃ­vel';
+        // Retornar um endereço padrão em caso de erro
+        return 'Localização não disponível';
     }
 }
 
-// VariÃ¡veis globais
+// Variáveis globais
 let userLocation = null;
 let currentResults = [];
 let currentFilter = 'all';
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    console.log('Inicializando aplicaÃ§Ã£o...');
+    console.log('Inicializando aplicação...');
     
     // Event listeners para busca
     searchBtn.addEventListener('click', handleSearch);
@@ -206,10 +206,10 @@ function initializeApp() {
         }
     });
     
-    // Event listener para obter localizaÃ§Ã£o atual
+    // Event listener para obter localização atual
     getLocationBtn.addEventListener('click', getCurrentLocation);
     
-    // Event listeners para sugestÃµes
+    // Event listeners para sugestões
     suggestionBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const location = this.getAttribute('data-location');
@@ -238,7 +238,7 @@ function initializeApp() {
         });
     }
     
-    // Event listener para botÃ£o voltar ao topo
+    // Event listener para botão voltar ao topo
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', scrollToTop);
     }
@@ -246,29 +246,29 @@ function initializeApp() {
     // Event listeners para scroll
     window.addEventListener('scroll', handleScroll);
     
-    // AnimaÃ§Ãµes de scroll
+    // Animações de scroll
     setupScrollAnimations();
     
-    // AnimaÃ§Ã£o dos nÃºmeros das estatÃ­sticas
+    // Animação dos números das estatísticas
     animateStats();
     
     // Configurar indicador de scroll
     setupScrollIndicator();
 }
 
-// FunÃ§Ã£o para alternar menu mobile
+// Função para alternar menu mobile
 function toggleMobileMenu() {
     navMenu.classList.toggle('active');
     navToggle.classList.toggle('active');
 }
 
-// FunÃ§Ã£o para fechar menu mobile
+// Função para fechar menu mobile
 function closeMobileMenu() {
     navMenu.classList.remove('active');
     navToggle.classList.remove('active');
 }
 
-// FunÃ§Ã£o para lidar com scroll
+// Função para lidar com scroll
 function handleScroll() {
     const scrollY = window.scrollY;
     
@@ -279,7 +279,7 @@ function handleScroll() {
         header.classList.remove('scrolled');
     }
     
-    // BotÃ£o voltar ao topo
+    // Botão voltar ao topo
     if (scrollY > 500) {
         backToTopBtn.style.display = 'flex';
         backToTopBtn.style.opacity = '1';
@@ -293,7 +293,7 @@ function handleScroll() {
     }
 }
 
-// FunÃ§Ã£o para voltar ao topo
+// Função para voltar ao topo
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -301,7 +301,7 @@ function scrollToTop() {
     });
 }
 
-// FunÃ§Ã£o para configurar indicador de scroll
+// Função para configurar indicador de scroll
 function setupScrollIndicator() {
     const scrollArrow = document.querySelector('.scroll-arrow');
     if (scrollArrow) {
@@ -313,7 +313,7 @@ function setupScrollIndicator() {
     }
 }
 
-// FunÃ§Ã£o para animar estatÃ­sticas
+// Função para animar estatísticas
 function animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
     
@@ -330,7 +330,7 @@ function animateStats() {
     statNumbers.forEach(stat => observer.observe(stat));
 }
 
-// FunÃ§Ã£o para animar nÃºmeros
+// Função para animar números
 function animateNumber(element, target) {
     let current = 0;
     const increment = target / 100;
@@ -349,10 +349,10 @@ function animateNumber(element, target) {
     }, 20);
 }
 
-// FunÃ§Ã£o para obter localizaÃ§Ã£o atual do usuÃ¡rio
+// Função para obter localização atual do usuário
 function getCurrentLocation() {
     if (!navigator.geolocation) {
-        showNotification('GeolocalizaÃ§Ã£o nÃ£o Ã© suportada pelo seu navegador', 'error');
+        showNotification('Geolocalização não é suportada pelo seu navegador', 'error');
         return;
     }
     
@@ -366,7 +366,7 @@ function getCurrentLocation() {
                 lng: position.coords.longitude
             };
             
-            // Simular busca de endereÃ§o reverso
+            // Simular busca de endereço reverso
             reverseGeocode(userLocation.lat, userLocation.lng)
                 .then(address => {
                     cepInput.value = address;
@@ -377,20 +377,20 @@ function getCurrentLocation() {
                 .catch(error => {
                     hideLoading();
                     getLocationBtn.innerHTML = '<i class="fas fa-crosshairs"></i>';
-                    showNotification('Erro ao obter endereÃ§o', 'error');
+                    showNotification('Erro ao obter endereço', 'error');
                 });
         },
         function(error) {
             hideLoading();
             getLocationBtn.innerHTML = '<i class="fas fa-crosshairs"></i>';
             
-            let message = 'Erro ao obter localizaÃ§Ã£o';
+            let message = 'Erro ao obter localização';
             switch(error.code) {
                 case error.PERMISSION_DENIED:
-                    message = 'PermissÃ£o de localizaÃ§Ã£o negada';
+                    message = 'Permissão de localização negada';
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    message = 'LocalizaÃ§Ã£o indisponÃ­vel';
+                    message = 'Localização indisponível';
                     break;
                 case error.TIMEOUT:
                     message = 'Tempo limite excedido';
@@ -406,22 +406,22 @@ function getCurrentLocation() {
     );
 }
 
-// FunÃ§Ã£o simulada de geocodificaÃ§Ã£o reversa
+// Função simulada de geocodificação reversa
 function reverseGeocode(lat, lng) {
     return new Promise((resolve, reject) => {
         // Simular delay de API
         setTimeout(() => {
             // Coordenadas aproximadas de algumas cidades brasileiras
             const cities = [
-                { name: "SÃ£o Paulo, SP", lat: -23.5505, lng: -46.6333 },
+                { name: "São Paulo, SP", lat: -23.5505, lng: -46.6333 },
                 { name: "Rio de Janeiro, RJ", lat: -22.9068, lng: -43.1729 },
                 { name: "Belo Horizonte, MG", lat: -19.9167, lng: -43.9345 },
                 { name: "Porto Alegre, RS", lat: -30.0346, lng: -51.2177 },
                 { name: "Salvador, BA", lat: -12.9714, lng: -38.5014 },
-                { name: "BrasÃ­lia, DF", lat: -15.8267, lng: -47.9218 }
+                { name: "Brasília, DF", lat: -15.8267, lng: -47.9218 }
             ];
             
-            // Encontrar cidade mais prÃ³xima
+            // Encontrar cidade mais próxima
             let closestCity = cities[0];
             let minDistance = calculateDistance(lat, lng, cities[0].lat, cities[0].lng);
             
@@ -438,7 +438,7 @@ function reverseGeocode(lat, lng) {
     });
 }
 
-// FunÃ§Ã£o para calcular distÃ¢ncia entre duas coordenadas
+// Função para calcular distância entre duas coordenadas
 function calculateDistance(lat1, lng1, lat2, lng2) {
     const R = 6371; // Raio da Terra em km
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -450,12 +450,12 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
     return R * c;
 }
 
-// FunÃ§Ã£o principal de busca
+// Função principal de busca
 async function handleSearch() {
     const cep = cepInput.value.replace(/\D/g, '');
 
     if (cep.length !== 8) {
-        showNotification('Por favor, digite um CEP vÃ¡lido com 8 dÃ­gitos.', 'warning');
+        showNotification('Por favor, digite um CEP válido com 8 dígitos.', 'warning');
         cepInput.focus();
         return;
     }
@@ -463,27 +463,27 @@ async function handleSearch() {
     showLoading(true);
 
     try {
-        console.log(`Buscando endereÃ§o para CEP do usuÃ¡rio: ${cep}`);
+        console.log(`Buscando endereço para CEP do usuário: ${cep}`);
         
-        // Buscar endereÃ§o do CEP digitado pelo usuÃ¡rio
+        // Buscar endereço do CEP digitado pelo usuário
         const enderecoUsuario = await buscarEnderecoPorCEP(cep);
         
-        if (enderecoUsuario === 'CEP invÃ¡lido' || enderecoUsuario === 'LocalizaÃ§Ã£o nÃ£o disponÃ­vel') {
-            showNotification('CEP nÃ£o encontrado. Verifique o nÃºmero digitado.', 'error');
+        if (enderecoUsuario === 'CEP inválido' || enderecoUsuario === 'Localização não disponível') {
+            showNotification('CEP não encontrado. Verifique o número digitado.', 'error');
             hideLoading();
             return;
         }
 
-        console.log(`EndereÃ§o do usuÃ¡rio encontrado: ${enderecoUsuario}`);
+        console.log(`Endereço do usuário encontrado: ${enderecoUsuario}`);
         
-        // Aplicar o endereÃ§o do usuÃ¡rio a TODAS as peneiras
+        // Aplicar o endereço do usuário a TODAS as peneiras
         peneirasData.forEach(peneira => {
             peneira.endereco = enderecoUsuario;
         });
         
-        console.log(`EndereÃ§o "${enderecoUsuario}" aplicado a todas as ${peneirasData.length} peneiras`);
+        console.log(`Endereço "${enderecoUsuario}" aplicado a todas as ${peneirasData.length} peneiras`);
 
-        loadingAddress.textContent = `Buscando peneiras prÃ³ximas a ${enderecoUsuario}`;
+        loadingAddress.textContent = `Buscando peneiras próximas a ${enderecoUsuario}`;
         document.getElementById('loading-neighborhood').textContent = ``;
 
         // Simular delay de busca
@@ -498,13 +498,13 @@ async function handleSearch() {
     }
 }
 
-// FunÃ§Ã£o para buscar peneiras
+// Função para buscar peneiras
 function searchPeneiras(location) {
     try {
-        // Simular geocodificaÃ§Ã£o da localizaÃ§Ã£o digitada
+        // Simular geocodificação da localização digitada
         const userCoords = geocodeLocation(location);
         
-        // Calcular distÃ¢ncias e filtrar resultados
+        // Calcular distâncias e filtrar resultados
         const results = peneirasData.map(peneira => {
             const distance = calculateDistance(
                 userCoords.lat, userCoords.lng,
@@ -529,34 +529,34 @@ function searchPeneiras(location) {
     }
 }
 
-// FunÃ§Ã£o simulada de geocodificaÃ§Ã£o
+// Função simulada de geocodificação
 function geocodeLocation(location) {
-    // Coordenadas simuladas baseadas na localizaÃ§Ã£o
+    // Coordenadas simuladas baseadas na localização
     const locationMap = {
-        'sÃ£o paulo': { lat: -23.5505, lng: -46.6333 },
+        'são paulo': { lat: -23.5505, lng: -46.6333 },
         'rio de janeiro': { lat: -22.9068, lng: -43.1729 },
         'belo horizonte': { lat: -19.9167, lng: -43.9345 },
         'porto alegre': { lat: -30.0346, lng: -51.2177 },
         'salvador': { lat: -12.9714, lng: -38.5014 },
-        'brasÃ­lia': { lat: -15.8267, lng: -47.9218 },
+        'brasília': { lat: -15.8267, lng: -47.9218 },
         'santos': { lat: -23.9618, lng: -46.3322 },
         'campinas': { lat: -22.9056, lng: -47.0608 }
     };
     
     const normalizedLocation = location.toLowerCase();
     
-    // Procurar por correspondÃªncia parcial
+    // Procurar por correspondência parcial
     for (const [key, coords] of Object.entries(locationMap)) {
         if (normalizedLocation.includes(key) || key.includes(normalizedLocation.split(',')[0].trim().toLowerCase())) {
             return coords;
         }
     }
     
-    // Retornar SÃ£o Paulo como padrÃ£o
-    return locationMap['sÃ£o paulo'];
+    // Retornar São Paulo como padrão
+    return locationMap['são paulo'];
 }
 
-// FunÃ§Ã£o para definir filtro ativo
+// Função para definir filtro ativo
 function setActiveFilter(filter) {
     filterBtns.forEach(btn => {
         btn.classList.remove('active');
@@ -567,7 +567,7 @@ function setActiveFilter(filter) {
     currentFilter = filter;
 }
 
-// FunÃ§Ã£o para aplicar filtro
+// Função para aplicar filtro
 function applyFilter(filter) {
     let filteredResults = [...currentResults];
     
@@ -586,7 +586,7 @@ function applyFilter(filter) {
     displayResults(filteredResults);
 }
 
-// FunÃ§Ã£o para exibir resultados
+// Função para exibir resultados
 function displayResults(results) {
     resultsSection.style.display = 'block';
     resultsSection.scrollIntoView({ behavior: 'smooth' });
@@ -606,14 +606,14 @@ function displayResults(results) {
         const resultCard = createResultCard(peneira);
         resultsContainer.appendChild(resultCard);
         
-        // AnimaÃ§Ã£o escalonada
+        // Animação escalonada
         setTimeout(() => {
             resultCard.classList.add('animate-fade-in-up');
         }, index * 100);
     });
 }
 
-// FUNÃ‡ÃƒO MODIFICADA PARA CRIAR CARD DE RESULTADO - COM BOTÃƒO "QUERO PARTICIPAR"
+// FUNÇÃO MODIFICADA PARA CRIAR CARD DE RESULTADO - COM BOTÃO "QUERO PARTICIPAR"
 function createResultCard(peneira) {
     const card = document.createElement('div');
     card.className = 'result-card';
@@ -624,7 +624,7 @@ function createResultCard(peneira) {
         `${Math.round(peneira.distancia * 1000)}m` : 
         `${peneira.distancia}km`;
     
-    // Determinar status e informaÃ§Ãµes de vagas de forma mais elegante
+    // Determinar status e informações de vagas de forma mais elegante
     const statusInfo = getStatusInfo(peneira);
     const vagasInfo = getVagasInfo(peneira);
     const prazoInfo = getPrazoInfo(peneira);
@@ -647,11 +647,11 @@ function createResultCard(peneira) {
             <div class="event-details">
                 <div class="detail-row primary">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>${dataFormatada} Ã s ${peneira.horario}</span>
+                    <span>${dataFormatada} às ${peneira.horario}</span>
                 </div>
                 <div class="detail-row">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>${peneira.endereco || 'EndereÃ§o serÃ¡ definido apÃ³s busca'}</span>
+                    <span>${peneira.endereco || 'Endereço será definido após busca'}</span>
                 </div>
                 <div class="detail-row">
                     <i class="fas fa-users"></i>
@@ -684,23 +684,23 @@ function createResultCard(peneira) {
     return card;
 }
 
-// FunÃ§Ã£o refinada para obter informaÃ§Ãµes de status
+// Função refinada para obter informações de status
 function getStatusInfo(peneira) {
     if (peneira.status === 'encerrada') {
         return {
             badge: '<span class="status-badge status-closed">Encerrada</span>',
-            banner: '<div class="status-banner closed"><i class="fas fa-times-circle"></i><span>InscriÃ§Ãµes Encerradas</span></div>'
+            banner: '<div class="status-banner closed"><i class="fas fa-times-circle"></i><span>Inscrições Encerradas</span></div>'
         };
     }
     
     // Para peneiras abertas, mostrar badge de disponibilidade baseado nas vagas
     let availabilityBadge = '';
     if (peneira.vagasDisponiveis <= 10) {
-        availabilityBadge = '<span class="status-badge status-urgent">Ãšltimas Vagas</span>';
+        availabilityBadge = '<span class="status-badge status-urgent">Últimas Vagas</span>';
     } else if (peneira.vagasDisponiveis <= 20) {
         availabilityBadge = '<span class="status-badge status-limited">Vagas Limitadas</span>';
     } else {
-        availabilityBadge = '<span class="status-badge status-open">DisponÃ­vel</span>';
+        availabilityBadge = '<span class="status-badge status-open">Disponível</span>';
     }
     
     return {
@@ -709,7 +709,7 @@ function getStatusInfo(peneira) {
     };
 }
 
-// FunÃ§Ã£o refinada para obter informaÃ§Ãµes de vagas
+// Função refinada para obter informações de vagas
 function getVagasInfo(peneira) {
     if (peneira.status !== 'aberta') {
         return { html: '' };
@@ -732,7 +732,7 @@ function getVagasInfo(peneira) {
     };
 }
 
-// FunÃ§Ã£o refinada para obter informaÃ§Ãµes de prazo
+// Função refinada para obter informações de prazo
 function getPrazoInfo(peneira) {
     if (peneira.status !== 'aberta') {
         return { html: '' };
@@ -747,7 +747,7 @@ function getPrazoInfo(peneira) {
                 <div class="deadline-info">
                     <i class="fas fa-clock"></i>
                     <div class="deadline-text">
-                        <span class="deadline-label">Prazo de inscriÃ§Ã£o</span>
+                        <span class="deadline-label">Prazo de inscrição</span>
                         <span class="deadline-date">${prazoFormatado}</span>
                         <span class="deadline-remaining">${diasRestantes}</span>
                     </div>
@@ -757,7 +757,7 @@ function getPrazoInfo(peneira) {
     };
 }
 
-// FunÃ§Ã£o para calcular dias restantes
+// Função para calcular dias restantes
 function getDiasRestantes() {
     const hoje = new Date();
     const prazo = new Date();
@@ -765,15 +765,15 @@ function getDiasRestantes() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     
     if (diffDays < 0) {
-        return 'Ãšltimas Vagas';
+        return 'Últimas Vagas';
     } else if (diffDays === 0) {
-        return 'Ãšltimas Vagas!';
+        return 'Últimas Vagas!';
     } else if (diffDays === 1) {
-        return 'Ãšltimas Vagas';
+        return 'Últimas Vagas';
     }
 }
 
-// FunÃ§Ã£o para formatar data
+// Função para formatar data
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { 
@@ -785,25 +785,25 @@ function formatDate(dateString) {
     return date.toLocaleDateString('pt-BR', options);
 }
 
-// NOVA FUNÃ‡ÃƒO: Abrir modal com informaÃ§Ãµes da peneira
+// NOVA FUNÇÃO: Abrir modal com informações da peneira
 function openPeneiraModal(peneiraId) {
     const peneira = peneirasData.find(p => p.id === peneiraId);
     if (!peneira) return;
     
-    // Preencher informaÃ§Ãµes do modal
+    // Preencher informações do modal
     document.getElementById('modal-title').textContent = peneira.titulo;
     document.getElementById('modal-clube').textContent = peneira.clube;
-    document.getElementById('modal-data-horario').textContent = `${formatDate(peneira.data)} Ã s ${peneira.horario}`;
-    document.getElementById('modal-endereco').textContent = peneira.endereco || 'EndereÃ§o serÃ¡ definido apÃ³s busca';
+    document.getElementById('modal-data-horario').textContent = `${formatDate(peneira.data)} às ${peneira.horario}`;
+    document.getElementById('modal-endereco').textContent = peneira.endereco || 'Endereço será definido após busca';
     document.getElementById('modal-categoria').textContent = peneira.categoria;
     document.getElementById('modal-requisitos').textContent = peneira.requisitos;
     document.getElementById('modal-contato').textContent = peneira.contato;
     document.getElementById('modal-prazo').textContent = formatDate(peneira.prazoInscricao);
     
-    // InformaÃ§Ãµes de vagas (apenas para peneiras abertas)
+    // Informações de vagas (apenas para peneiras abertas)
     if (peneira.status === 'aberta') {
         const percentualOcupado = ((peneira.totalVagas - peneira.vagasDisponiveis) / peneira.totalVagas) * 100;
-        document.getElementById('modal-vagas').textContent = `${peneira.vagasDisponiveis} vagas disponÃ­veis de ${peneira.totalVagas} total`;
+        document.getElementById('modal-vagas').textContent = `${peneira.vagasDisponiveis} vagas disponíveis de ${peneira.totalVagas} total`;
         document.getElementById('modal-availability-progress').style.width = `${percentualOcupado}%`;
         document.getElementById('modal-vagas-info').style.display = 'block';
     } else {
@@ -823,7 +823,7 @@ function openPeneiraModal(peneiraId) {
     });
 }
 
-// NOVA FUNÃ‡ÃƒO: Fechar modal
+// NOVA FUNÇÃO: Fechar modal
 function closePeneiraModal() {
     const modal = document.getElementById('peneira-modal');
     modal.style.display = 'none';
@@ -837,7 +837,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// FunÃ§Ã£o para mostrar loading
+// Função para mostrar loading
 function showLoading(isCepSearch = false) {
     if (!isCepSearch) {
         loadingAddress.textContent = 'Buscando peneiras...';
@@ -846,15 +846,15 @@ function showLoading(isCepSearch = false) {
     document.body.style.overflow = 'hidden';
 }
 
-// FunÃ§Ã£o para esconder loading
+// Função para esconder loading
 function hideLoading() {
     loadingOverlay.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
-// FunÃ§Ã£o para mostrar notificaÃ§Ãµes
+// Função para mostrar notificações
 function showNotification(message, type = 'info') {
-    // Remover notificaÃ§Ã£o existente
+    // Remover notificação existente
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
@@ -867,7 +867,7 @@ function showNotification(message, type = 'info') {
     const container = document.getElementById('notification-container');
     container.appendChild(notification);
     
-    // Remover notificaÃ§Ã£o apÃ³s 5 segundos
+    // Remover notificação após 5 segundos
     setTimeout(() => {
         if (notification.parentNode) {
             notification.remove();
@@ -875,7 +875,7 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// FunÃ§Ã£o para configurar animaÃ§Ãµes de scroll
+// Função para configurar animações de scroll
 function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
