@@ -596,19 +596,24 @@ function displayResults(results) {
     });
     
     resultsContainer.appendChild(categoriesList);
+    
+    console.log('Categorias renderizadas:', categoriesMap.size);
 }
 
 // ========== NOVA FUNÇÃO: CRIAR ITEM DE CATEGORIA ==========
 function createCategoryItem(categoria, peneiras, ativasCount, totalCount, index) {
-    const categoryId = `category-${index}`;
+    const categoryId = `category-content-${index}`;
+    const categoryHeaderId = `category-header-${index}`;
+    
     const categoryItem = document.createElement('div');
     categoryItem.className = 'category-item';
+    categoryItem.setAttribute('data-category-index', index);
     
     const statusIcon = ativasCount > 0 ? 'check-circle' : 'times-circle';
     const statusClass = ativasCount > 0 ? 'active' : 'inactive';
     
     categoryItem.innerHTML = `
-        <div class="category-header ${statusClass}" data-category-id="${categoryId}">
+        <div class="category-header ${statusClass}" id="${categoryHeaderId}">
             <div class="category-info">
                 <i class="fas fa-${statusIcon} category-status-icon"></i>
                 <div class="category-text">
@@ -628,6 +633,7 @@ function createCategoryItem(categoria, peneiras, ativasCount, totalCount, index)
     // Adicionar event listener para expandir/colapsar
     const categoryHeader = categoryItem.querySelector('.category-header');
     categoryHeader.addEventListener('click', function() {
+        console.log('Clicou em categoria:', categoria);
         toggleCategory(categoryId, categoryItem, peneiras);
     });
     
@@ -635,33 +641,58 @@ function createCategoryItem(categoria, peneiras, ativasCount, totalCount, index)
 }
 
 // ========== NOVA FUNÇÃO: ALTERNAR CATEGORIA ==========
-function toggleCategory(categoryId, categoryItem, peneiras) {
-    const categoryContent = document.getElementById(categoryId);
+function toggleCategory(contentId, categoryItem, peneiras) {
+    console.log('toggleCategory chamado com contentId:', contentId);
+    
+    const categoryContent = document.getElementById(contentId);
+    
+    if (!categoryContent) {
+        console.error('Elemento não encontrado:', contentId);
+        return;
+    }
+    
     const toggleIcon = categoryItem.querySelector('.toggle-icon');
     const isExpanded = categoryContent.style.display !== 'none';
     
+    console.log('isExpanded:', isExpanded);
+    
     if (isExpanded) {
         // Colapsar
+        console.log('Colapsando categoria');
         categoryContent.style.display = 'none';
         toggleIcon.style.transform = 'rotate(0deg)';
-        expandedCategories.delete(categoryId);
+        expandedCategories.delete(contentId);
     } else {
         // Expandir
+        console.log('Expandindo categoria');
         categoryContent.style.display = 'block';
         toggleIcon.style.transform = 'rotate(180deg)';
-        expandedCategories.add(categoryId);
+        expandedCategories.add(contentId);
         
         // Renderizar cards das peneiras se ainda não estiverem renderizados
         const peneirasGrid = categoryContent.querySelector('.peneiras-grid');
+        
+        if (!peneirasGrid) {
+            console.error('peneiras-grid não encontrado');
+            return;
+        }
+        
         if (peneirasGrid.children.length === 0) {
+            console.log('Renderizando', peneiras.length, 'peneiras');
+            
             peneiras.forEach((peneira, index) => {
                 const resultCard = createResultCard(peneira);
                 peneirasGrid.appendChild(resultCard);
                 
+                // Adicionar animação
                 setTimeout(() => {
                     resultCard.classList.add('animate-fade-in-up');
                 }, index * 100);
             });
+            
+            console.log('Cards renderizados com sucesso');
+        } else {
+            console.log('Cards já foram renderizados anteriormente');
         }
     }
 }
