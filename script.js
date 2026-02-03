@@ -1,4 +1,4 @@
-// Dados simulados de peneiras de futebol - VERSÃO SIMPLIFICADA
+// Dados simulados de peneiras de futebol
 const peneirasData = [
     {
         id: 1,
@@ -116,61 +116,50 @@ const peneirasData = [
     }
 ];
 
-// Cache para armazenar endereços já consultados
 const enderecoCache = new Map();
 
-// Função para buscar endereço por CEP via ViaCEP
 async function buscarEnderecoPorCEP(cep) {
     const cepLimpo = cep.replace(/\D/g, '');
     
     if (enderecoCache.has(cepLimpo)) {
-        console.log(`CEP ${cep} encontrado no cache:`, enderecoCache.get(cepLimpo));
         return enderecoCache.get(cepLimpo);
     }
     
     if (cepLimpo.length !== 8) {
-        console.error(`CEP inválido: ${cep} (deve ter 8 dígitos)`);
         return 'CEP inválido';
     }
     
     try {
-        console.log(`Buscando CEP ${cep} (${cepLimpo}) na API ViaCEP...`);
         const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
         
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            throw new Error(`HTTP ${response.status}`);
         }
         
         const data = await response.json();
-        console.log(`Resposta da API para CEP ${cep}:`, data);
         
         if (data.erro) {
-            throw new Error('CEP não encontrado na base de dados');
+            throw new Error('CEP não encontrado');
         }
         
         if (!data.localidade || !data.uf) {
-            throw new Error('Dados incompletos retornados pela API');
+            throw new Error('Dados incompletos');
         }
         
         const endereco = `${data.localidade}, ${data.uf}`;
-        console.log(`Endereço formatado para CEP ${cep}: ${endereco}`);
-        
         enderecoCache.set(cepLimpo, endereco);
         
         return endereco;
     } catch (error) {
-        console.error(`Erro ao buscar CEP ${cep}:`, error.message);
         return 'Localização não disponível';
     }
 }
 
-// Variáveis globais
 let userLocation = null;
 let currentResults = [];
 let currentFilter = 'all';
-let expandedCategories = new Set(); // Rastrear categorias expandidas
+let expandedCategories = new Set();
 
-// Elementos DOM
 const cepInput = document.getElementById('cep-input');
 const getLocationBtn = document.getElementById('get-location-btn');
 const searchBtn = document.getElementById('search-btn');
@@ -186,7 +175,6 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 const header = document.querySelector('.header');
 
-// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
@@ -447,8 +435,6 @@ async function handleSearch() {
     showLoading(true);
 
     try {
-        console.log(`Buscando endereço para CEP do usuário: ${cep}`);
-        
         const enderecoUsuario = await buscarEnderecoPorCEP(cep);
         
         if (enderecoUsuario === 'CEP inválido' || enderecoUsuario === 'Localização não disponível') {
@@ -457,13 +443,9 @@ async function handleSearch() {
             return;
         }
 
-        console.log(`Endereço do usuário encontrado: ${enderecoUsuario}`);
-        
         peneirasData.forEach(peneira => {
             peneira.endereco = enderecoUsuario;
         });
-        
-        console.log(`Endereço "${enderecoUsuario}" aplicado a todas as ${peneirasData.length} peneiras`);
 
         loadingAddress.textContent = `Buscando peneiras próximas a ${enderecoUsuario}`;
         document.getElementById('loading-neighborhood').textContent = ``;
@@ -473,7 +455,6 @@ async function handleSearch() {
         }, 4000);
 
     } catch (error) {
-        console.error('Erro ao buscar CEP:', error);
         showNotification('Erro ao buscar CEP. Tente novamente.', 'error');
         hideLoading();
     }
@@ -556,7 +537,7 @@ function applyFilter(filter) {
     displayResults(filteredResults);
 }
 
-// ========== FUNÇÃO MODIFICADA: EXIBIR RESULTADOS COM AGRUPAMENTO POR CATEGORIA ==========
+// ========== FUNÇÃO PRINCIPAL: EXIBIR RESULTADOS COM AGRUPAMENTO ==========
 function displayResults(results) {
     resultsSection.style.display = 'block';
     resultsSection.scrollIntoView({ behavior: 'smooth' });
@@ -596,24 +577,20 @@ function displayResults(results) {
     });
     
     resultsContainer.appendChild(categoriesList);
-    
-    console.log('Categorias renderizadas:', categoriesMap.size);
 }
 
-// ========== NOVA FUNÇÃO: CRIAR ITEM DE CATEGORIA ==========
+// ========== CRIAR ITEM DE CATEGORIA ==========
 function createCategoryItem(categoria, peneiras, ativasCount, totalCount, index) {
-    const categoryId = `category-content-${index}`;
-    const categoryHeaderId = `category-header-${index}`;
+    const categoryId = `category-${index}`;
     
     const categoryItem = document.createElement('div');
     categoryItem.className = 'category-item';
-    categoryItem.setAttribute('data-category-index', index);
     
     const statusIcon = ativasCount > 0 ? 'check-circle' : 'times-circle';
     const statusClass = ativasCount > 0 ? 'active' : 'inactive';
     
     categoryItem.innerHTML = `
-        <div class="category-header ${statusClass}" id="${categoryHeaderId}">
+        <div class="category-header ${statusClass}">
             <div class="category-info">
                 <i class="fas fa-${statusIcon} category-status-icon"></i>
                 <div class="category-text">
@@ -625,85 +602,51 @@ function createCategoryItem(categoria, peneiras, ativasCount, totalCount, index)
                 <i class="fas fa-chevron-down toggle-icon"></i>
             </div>
         </div>
-        <div class="category-content" id="${categoryId}" style="display: none;">
+        <div class="category-content" style="display: none;">
             <div class="peneiras-grid"></div>
         </div>
     `;
     
     // Adicionar event listener para expandir/colapsar
     const categoryHeader = categoryItem.querySelector('.category-header');
+    const categoryContent = categoryItem.querySelector('.category-content');
+    const peneirasGrid = categoryContent.querySelector('.peneiras-grid');
+    
     categoryHeader.addEventListener('click', function() {
-        console.log('Clicou em categoria:', categoria);
-        toggleCategory(categoryId, categoryItem, peneiras);
+        const isHidden = categoryContent.style.display === 'none';
+        
+        if (isHidden) {
+            // Expandir
+            categoryContent.style.display = 'block';
+            categoryHeader.querySelector('.toggle-icon').style.transform = 'rotate(180deg)';
+            
+            // Renderizar cards se estiver vazio
+            if (peneirasGrid.children.length === 0) {
+                peneiras.forEach((peneira, idx) => {
+                    const resultCard = createResultCard(peneira);
+                    peneirasGrid.appendChild(resultCard);
+                    
+                    setTimeout(() => {
+                        resultCard.classList.add('animate-fade-in-up');
+                    }, idx * 100);
+                });
+            }
+        } else {
+            // Colapsar
+            categoryContent.style.display = 'none';
+            categoryHeader.querySelector('.toggle-icon').style.transform = 'rotate(0deg)';
+        }
     });
     
     return categoryItem;
 }
 
-// ========== NOVA FUNÇÃO: ALTERNAR CATEGORIA ==========
-function toggleCategory(contentId, categoryItem, peneiras) {
-    console.log('toggleCategory chamado com contentId:', contentId);
-    
-    const categoryContent = document.getElementById(contentId);
-    
-    if (!categoryContent) {
-        console.error('Elemento não encontrado:', contentId);
-        return;
-    }
-    
-    const toggleIcon = categoryItem.querySelector('.toggle-icon');
-    const isExpanded = categoryContent.style.display !== 'none';
-    
-    console.log('isExpanded:', isExpanded);
-    
-    if (isExpanded) {
-        // Colapsar
-        console.log('Colapsando categoria');
-        categoryContent.style.display = 'none';
-        toggleIcon.style.transform = 'rotate(0deg)';
-        expandedCategories.delete(contentId);
-    } else {
-        // Expandir
-        console.log('Expandindo categoria');
-        categoryContent.style.display = 'block';
-        toggleIcon.style.transform = 'rotate(180deg)';
-        expandedCategories.add(contentId);
-        
-        // Renderizar cards das peneiras se ainda não estiverem renderizados
-        const peneirasGrid = categoryContent.querySelector('.peneiras-grid');
-        
-        if (!peneirasGrid) {
-            console.error('peneiras-grid não encontrado');
-            return;
-        }
-        
-        if (peneirasGrid.children.length === 0) {
-            console.log('Renderizando', peneiras.length, 'peneiras');
-            
-            peneiras.forEach((peneira, index) => {
-                const resultCard = createResultCard(peneira);
-                peneirasGrid.appendChild(resultCard);
-                
-                // Adicionar animação
-                setTimeout(() => {
-                    resultCard.classList.add('animate-fade-in-up');
-                }, index * 100);
-            });
-            
-            console.log('Cards renderizados com sucesso');
-        } else {
-            console.log('Cards já foram renderizados anteriormente');
-        }
-    }
-}
-
-// ========== FUNÇÃO ORIGINAL: CRIAR CARD DE RESULTADO ==========
+// ========== CRIAR CARD DE RESULTADO ==========
 function createResultCard(peneira) {
     const card = document.createElement('div');
     card.className = 'result-card';
     
     const dataFormatada = formatDate(peneira.data);
-    const prazoFormatado = formatDate(peneira.prazoInscricao);
     const distanciaTexto = peneira.distancia < 1 ? 
         `${Math.round(peneira.distancia * 1000)}m` : 
         `${peneira.distancia}km`;
